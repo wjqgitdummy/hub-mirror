@@ -16,6 +16,9 @@ jobs:
     if: contains(github.event.issue.labels.*.name, 'hub-mirror')
     # 镜像转换任务的步骤列表
     steps:
+      # 0. Make some space
+      - name: Make space
+        run: sudo rm -rf /usr/share/dotnet && sudo rm -rf /opt/ghc && sudo rm -rf "/usr/local/share/boost" && sudo rm -rf "$AGENT_TOOLSDIRECTORY"
       # 1. 切换分支（默认主分支）
       - name: Check out code
         uses: actions/checkout@v2
